@@ -40,6 +40,48 @@ const addGame = async (req, res) => {
     });
 };
 
+const getGameByTitle = async (req, res) => {
+    const { title } = req.params; // Get the title from the request parameters
+    try {
+        const game = await Games.findOne({ title }); // Find the game by title
+        if (!game) {
+            return res.status(404).json({ message: 'Game not found' });
+        }
+        
+        // Return just the image buffer as a Base64 string and content type
+        return res.status(200).json({
+            _id: game._id,
+            title: game.title,
+            description: game.description,
+            image: game.image.toString('base64'), // Convert buffer to Base64 string here
+            contentType: 'image/jpeg', // Change to the actual content type if needed
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
+
+
+const removeGame = async (req, res) => {
+    const { title } = req.body; // Get the title from the request body
+
+    try {
+        let game = await Games.findOne({ title });
+        if (game) {
+            await Games.deleteOne({ title });
+            return res.status(200).json({ message: "Game deleted successfully" }); // Changed to 200 for success
+        } else {
+            return res.status(404).json({ message: "Game does not exist" }); // Changed to 404 for not found
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+};
+
 const getGames = async (req, res) => {
     try {
         const games = await Games.find();
@@ -56,5 +98,7 @@ const getGames = async (req, res) => {
 
 module.exports = {
     addGame,
+    removeGame,
+    getGameByTitle,
     getGames
 };
