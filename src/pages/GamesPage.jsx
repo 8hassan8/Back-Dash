@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const GamesPage = () => {
 
     const [games, setGames] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchGames = async () => {
             try {
@@ -30,7 +30,9 @@ const GamesPage = () => {
                 <div className='relative flex'>
                  <img className='' src={`data:image/jpeg;base64,${game.image}`} alt={game.title} />
                  
-                <button className='absolute bottom-2 bg-gray-50 bg-opacity-25 left-1/2 transform -translate-x-1/2 border-2 border-red-700 text-red-700 font-black text-5xl px-4 py-4 rounded-xl shadow-lg hover:bg-red-100 hover:scale-110 hover:shadow-2xl transition-all duration-300'>
+                <button className='absolute bottom-2 bg-gray-50 bg-opacity-25 left-1/2 transform -translate-x-1/2 border-2 border-red-700 text-red-700 font-black text-5xl px-4 py-4 rounded-xl shadow-lg hover:bg-red-100 hover:scale-110 hover:shadow-2xl transition-all duration-300'
+                onClick={() => navigate('/bookingsPage')}
+                >
                     Book Your Slot
                 </button>
                 </div> 

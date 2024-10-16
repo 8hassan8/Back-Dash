@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Sidebar = ({ toggleAddGameModal, toggleAddEventModal, toggleAddEditContactModal, toggleDeleteGameModal }) => {
+const Sidebar = ({ toggleAddGameModal, toggleGetGamesModal, toggleGetEventsModal, toggleAddEventModal, toggleUpdateEventModal, toggleDeleteEventModal, toggleAddEditContactModal, toggleDeleteGameModal, toggleUpdateGameModal }) => {
     // State for dropdown visibility
     const [gameMenuOpen, setGameMenuOpen] = useState(false);
     const [eventMenuOpen, setEventMenuOpen] = useState(false);
@@ -54,14 +54,20 @@ const Sidebar = ({ toggleAddGameModal, toggleAddEventModal, toggleAddEditContact
                                 </button>
                             </li>
                             <li className="mb-2">
-                                <Link to="/admin/update-game" className="hover:underline text-sm">
+                            <button
+                                    onClick={toggleUpdateGameModal}
+                                    className="hover:underline text-sm"
+                                >
                                     Update Game
-                                </Link>
+                                </button>
                             </li>
                             <li className="mb-2">
-                                <Link to="/admin/get-games" className="hover:underline text-sm">
+                            <button
+                                    onClick={toggleGetGamesModal}
+                                    className="hover:underline text-sm"
+                                >
                                     Get Games
-                                </Link>
+                                </button>
                             </li>
                         </ul>
                     )}
@@ -86,19 +92,28 @@ const Sidebar = ({ toggleAddGameModal, toggleAddEventModal, toggleAddEditContact
                                 </button>
                             </li>
                             <li className="mb-2">
-                                <Link to="/admin/remove-event" className="hover:underline text-sm">
+                            <button
+                                    onClick={toggleDeleteEventModal}
+                                    className="hover:underline text-sm"
+                                >
                                     Remove Event
-                                </Link>
+                                </button>
                             </li>
                             <li className="mb-2">
-                                <Link to="/admin/update-event" className="hover:underline text-sm">
+                            <button
+                                    onClick={toggleUpdateEventModal}
+                                    className="hover:underline text-sm"
+                                >
                                     Update Event
-                                </Link>
+                                </button>
                             </li>
                             <li className="mb-2">
-                                <Link to="/admin/get-events" className="hover:underline text-sm">
+                            <button
+                                    onClick={toggleGetEventsModal}
+                                    className="hover:underline text-sm"
+                                >
                                     Get Events
-                                </Link>
+                                </button>
                             </li>
                         </ul>
                     )}

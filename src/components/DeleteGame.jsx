@@ -55,12 +55,7 @@ const DeleteGame = ({ closeModal }) => {
         closeModal(); // Close the modal
     };
 
-    // Utility function to convert buffer to Base64 Data URL
-    const getBase64Image = (buffer, contentType) => {
-        if (!buffer) return ''; // Return an empty string if the buffer is undefined
-        return `data:${contentType};base64,${Buffer.from(buffer).toString('base64')}`; // Convert buffer to Base64
-    };
-
+    
     return (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -78,12 +73,21 @@ const DeleteGame = ({ closeModal }) => {
                                 className="block w-full p-2 mb-4 border border-red-700 bg-gray-800 text-white rounded"
                                 required
                             />
+                            <div className="flex space-x-4">
                             <button
                                 type="submit"
                                 className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-600"
                             >
                                 Get Game Info
                             </button>
+                            <button
+                                type="button"
+                                onClick={closeModal} // Call closeModal to close the form
+                                className="bg-gray-400 text-white p-2 rounded"
+                                >
+                                Cancel
+                            </button>
+                            </div>
                         </>
                     ) : (
                         <>

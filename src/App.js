@@ -1,5 +1,5 @@
 import React from'react';
-import {BrowserRouter as Router, Routes, Route, Navigate} from'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
@@ -8,12 +8,12 @@ import AuthProvider from './context/authContext';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoutes from './components/ProtectedRoutes';
-import AddGame from './components/AddGame';
 import GamesPage from './pages/GamesPage';
 import { useState } from'react';
 import EventsPage from './pages/EventsPage';
 import BookingsPage from './pages/BookingsPage';
 import ContactPage from './pages/ContactPage';
+import UserPage from './pages/UserPage';
 
 function App() {
 
@@ -39,6 +39,7 @@ function App() {
             <Route path="/eventsPage" element={<EventsPage />} />
             <Route path="/bookingsPage" element={<BookingsPage />} />
             <Route path="/contactPage" element={<ContactPage />} />
+            <Route path="/userPage" element={<UserPage />} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" 
