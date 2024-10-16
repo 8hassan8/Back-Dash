@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
     password:{type:String,required:true,minlength:8},
     role: {
         type: String,
-        enum: ['user', 'admin'], // Only allow 'user' or 'admin'
+        enum: ['user', 'admin','pro'], // Only allow 'user' or 'admin'
         default: 'user'
       },
     image:{type:Buffer}

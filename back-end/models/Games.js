@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const GamesSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true, unique: true },
+    title: { type: String, required: true, Uique: true },
+    description: { type: String, required: true },
     image: { type: Buffer, required: true }  // Correct way to define Buffer type
 });
 

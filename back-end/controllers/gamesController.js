@@ -62,7 +62,40 @@ const getGameByTitle = async (req, res) => {
     }
 };
 
+const updateGame = async (req, res) => {
+    upload(req, res, async function (err) {
+        if (err) {
+            return res.status(500).json({ message: "File upload failed" });
+        }
 
+        const { title } = req.params; // Get the title from the request parameters
+        const { description } = req.body; // Get the description from the request body
+
+        try {
+            let game = await Games.findOne({ title });
+            if (!game) {
+                return res.status(404).json({ message: "Game does not exist" });
+            }
+
+            // Update the description if provided
+            if (description) {
+                game.description = description;
+            }
+
+            // Update the image if a new image is provided
+            if (req.file) {
+                game.image = req.file.buffer; // Store the new image as a buffer
+                game.contentType = req.file.mimetype; // Update content type
+            }
+
+            await game.save(); // Save the updated game
+            return res.status(200).json({ message: "Game updated successfully" });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: "Internal Server Error" });
+        }
+    });
+};
 
 
 const removeGame = async (req, res) => {
@@ -100,5 +133,6 @@ module.exports = {
     addGame,
     removeGame,
     getGameByTitle,
+    updateGame,
     getGames
 };

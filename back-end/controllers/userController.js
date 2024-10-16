@@ -76,7 +76,8 @@ const loginUser = async (req, res) => {
 
             user: {
 
-                id: user._id
+                id: user._id,
+                email: user.email
 
         }
 
@@ -105,7 +106,29 @@ const loginUser = async (req, res) => {
 
 };
 
+const getUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password'); // Fetch user data by ID, excluding password
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            image: user.image ? user.image.toString('base64') : undefined, // Convert image to base64 if present
+        });
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 module.exports = {
     signUpUser,
-    loginUser
+    loginUser,
+    getUserProfile
 };

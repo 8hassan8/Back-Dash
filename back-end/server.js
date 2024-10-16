@@ -23,6 +23,7 @@ app.use('/api/games',require('./routes/gamesRoutes'));
 app.use('/api/events',require('./routes/eventsRoutes'));
 app.use('/api/bookings',require('./routes/bookingsRoutes'));
 app.use('/api/contact',require('./routes/contactRoutes'));
+app.use('/api/payment',require('./routes/paymentRoutes'));
 
 
 const PORT=process.env.PORT || 5000;
