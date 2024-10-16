@@ -1,0 +1,15 @@
+.custom-date-picker {
+    color: white; /* Text color */
+    background-color: black; /* Input background */
+  }
+  
+  /* For webkit browsers */
+  .custom-date-picker::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverts the icon color */
+  }
+  
+  /* Placeholder styles */
+  .custom-date-picker::placeholder {
+    color: white; /* Placeholder text color */
+  }
+  
